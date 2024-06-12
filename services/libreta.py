@@ -5,7 +5,7 @@ from schemas.libreta_schema import libreta_schema, libretas_schema
 
 libreta_routes = Blueprint("libreta_routes", __name__)
 
-@libreta_routes.route('/libreta_estado', methods=['POST'])
+@libreta_routes.route('/create_libreta', methods=['POST'])
 def create_libreta():
     id_estudiante = request.json.get('id_estudiante')
     per_academico = request.json.get('per_academico')

@@ -27,7 +27,7 @@ class Especialista(db.Model):
     tratamientos = relationship('Tratamiento', backref='especialista7', cascade='all, delete-orphan')
 
     # constructor de la clase
-    def __init__(self, id_especialidad, doc_identidad, nombres, apellidos, fec_nacimiento, id_genero, email, n_licencia, anio_graduacion):
+    def __init__(self, id_especialidad, doc_identidad, nombres, apellidos, fec_nacimiento, id_genero, email, n_licencia, anio_graduacion,contrasenia):
         self.id_especialidad = id_especialidad
         self.doc_identidad = doc_identidad
         self.nombres = nombres
@@ -37,3 +37,4 @@ class Especialista(db.Model):
         self.email = email
         self.n_licencia = n_licencia
         self.anio_graduacion = anio_graduacion
+        self.contrasenia=contrasenia

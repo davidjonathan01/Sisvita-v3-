@@ -7,12 +7,13 @@ resultado_routes = Blueprint("resultado_routes", __name__)
 
 @resultado_routes.route('/create_resultado', methods=['POST'])
 def create_resultado():
+    id_evaluacion=request.json.get('id_evaluacion')
     id_especialista = request.json.get('id_especialista')
     puntaje = request.json.get('puntaje')
     interpretacion = request.json.get('interpretacion')
     fec_resultado = request.json.get('fec_resultado')
 
-    new_resultado = Resultado(id_especialista=id_especialista, puntaje=puntaje, interpretacion=interpretacion, fec_resultado=fec_resultado)
+    new_resultado = Resultado(id_evaluacion=id_evaluacion,id_especialista=id_especialista, puntaje=puntaje, interpretacion=interpretacion, fec_resultado=fec_resultado)
 
     db.session.add(new_resultado)
     db.session.commit()
@@ -91,7 +92,7 @@ def update_resultado(id1, id2):
 
 @resultado_routes.route('/delete_resultado/<int:id1>/<int:id2>', methods=['DELETE'])
 def delete_resultado(id1, id2):
-    resultado = Resultado.query.get(id1, id2)
+    resultado = Resultado.query.get((id1, id2))
 
     if not resultado:
         data = {
@@ -99,13 +100,16 @@ def delete_resultado(id1, id2):
             'status': 404
         }
         return make_response(jsonify(data), 404)
+    
+    result=resultado_schema.dump(resultado)
 
     db.session.delete(resultado)
     db.session.commit()
 
     data = {
         'message': 'Resultado eliminado!',
-        'status': 200
+        'status': 200,
+        'data':result
     }
 
     return make_response(jsonify(data), 200)

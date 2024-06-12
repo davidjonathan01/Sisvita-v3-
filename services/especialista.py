@@ -17,12 +17,10 @@ def create_especialista():
     id_genero = request.json.get('id_genero')
     email = request.json.get('email')
     n_licencia = request.json.get('n_licencia')
-    anio_ingreso = request.json.get('anio_ingreso')
+    anio_graduacion= request.json.get('anio_graduacion')
     contrasenia = request.json.get('contrasenia')
 
-    contrasenia = bcrypt.hashpw(contrasenia.encode('utf-8'), bcrypt.gensalt())
-
-    new_especialista = Especialista(id_especialidad=id_especialidad, doc_identidad=doc_identidad, nombres=nombres, apellidos=apellidos, fec_nacimiento=fec_nacimiento, id_genero=id_genero, email=email, n_licencia=n_licencia, anio_ingreso=anio_ingreso, contrasenia=contrasenia)
+    new_especialista = Especialista(id_especialidad=id_especialidad, doc_identidad=doc_identidad, nombres=nombres, apellidos=apellidos, fec_nacimiento=fec_nacimiento, id_genero=id_genero, email=email, n_licencia=n_licencia, anio_graduacion=anio_graduacion, contrasenia=contrasenia)
 
     db.session.add(new_especialista)
     db.session.commit()
@@ -90,7 +88,7 @@ def update_especialista(id):
     especialista.id_genero = request.json.get('id_genero')
     especialista.email = request.json.get('email')
     especialista.n_licencia = request.json.get('n_licencia')
-    especialista.anio_ingreso = request.json.get('anio_ingreso')
+    especialista.anio_graduacion = request.json.get('anio_graduacion')
     contrasenia = request.json.get('contrasenia')
     contrasenia = bcrypt.hashpw(contrasenia.encode('utf-8'), bcrypt.gensalt())
     especialista.contrasenia = contrasenia

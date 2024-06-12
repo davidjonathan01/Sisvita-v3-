@@ -8,7 +8,7 @@ class Recurso(db.Model):
     id_recurso = db.Column(db.Integer, primary_key=True, autoincrement=True)
     id_especialista = db.Column(db.Integer, db.ForeignKey('especialista.id_especialista'), nullable=False)
     titulo = db.Column(db.String(100), nullable=False)
-    contenido = db.Column(db.String(1000), nullable=False)
+    descripcion = db.Column(db.String(1000), nullable=False)
     palabras_clave = db.Column(db.String(250), nullable=False)
     fec_publicacion = db.Column(db.Date, nullable=False)
     fec_edicion = db.Column(db.Date, nullable=True)

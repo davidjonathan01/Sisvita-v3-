@@ -11,10 +11,10 @@ evaluacion_routes = Blueprint("evaluacion_routes", __name__)
 def create_evaluacion():
     id_estudiante = request.json.get('id_estudiante')
     id_test = request.json.get('id_test')
-    respuestas_formulario = request.json.get('respuestas_formulario')
+    respuestas= request.json.get('respuestas')
     fec_realizacion = request.json.get('fec_realizacion')
 
-    new_evaluacion = Evaluacion(id_estudiante=id_estudiante, id_test=id_test, respuestas_formulario=respuestas_formulario, fec_realizacion=fec_realizacion)
+    new_evaluacion = Evaluacion(id_estudiante=id_estudiante, id_test=id_test, respuestas=respuestas, fec_realizacion=fec_realizacion)
 
     db.session.add(new_evaluacion)
     db.session.commit()
@@ -76,12 +76,12 @@ def update_evaluacion(id):
 
     id_estudiante = request.json.get('id_estudiante')
     id_test = request.json.get('id_test')
-    respuestas_formulario = request.json.get('respuestas_formulario')
+    respuestas = request.json.get('respuestas')
     fec_realizacion = request.json.get('fec_realizacion')
 
     evaluacion.id_estudiante = id_estudiante
     evaluacion.id_test = id_test
-    evaluacion.respuestas_formulario = respuestas_formulario
+    evaluacion.respuestas = respuestas
     evaluacion.fec_realizacion = fec_realizacion
 
     db.session.commit()

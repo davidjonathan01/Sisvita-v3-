@@ -4,9 +4,9 @@ from utils.db import db
 
 class Comentario(db.Model):
     __tablename__ = 'comentario'
-
-    id_post = db.Column(db.Integer, db.ForeignKey('post.id_post'), primary_key=True, nullable=False)
-    id_estudiante = db.Column(db.Integer, db.ForeignKey('estudiante.id_estudiante'), primary_key=True, nullable=False)
+    id_comentario=db.Column(db.Integer, primary_key=True,  autoincrement=True)
+    id_post = db.Column(db.Integer, db.ForeignKey('post.id_post'), nullable=False)
+    id_estudiante = db.Column(db.Integer, db.ForeignKey('estudiante.id_estudiante'), nullable=False)
     descripcion = db.Column(db.String(300), nullable=False)
     fec_publicacion = db.Column(db.Date, nullable=False)
     fec_edicion = db.Column(db.Date, nullable=True)

@@ -9,10 +9,10 @@ horario_routes = Blueprint("horario_routes", __name__)
 def create_horario():
     id_taller = request.json.get('id_taller')
     dia = request.json.get('dia')
-    hora_inicio = request.json.get('hora_inicio')
-    hora_fin = request.json.get('hora_fin')
+    horario_inicio = request.json.get('horario_inicio')
+    horario_fin = request.json.get('horario_fin')
 
-    new_horario = Horario(id_taller=id_taller, dia=dia, hora_inicio=hora_inicio, hora_fin=hora_fin)
+    new_horario = Horario(id_taller=id_taller, dia=dia, horario_inicio=horario_inicio, horario_fin=horario_fin)
 
     db.session.add(new_horario)
     db.session.commit()
@@ -74,13 +74,13 @@ def update_horario(id):
 
     id_taller = request.json.get('id_taller')
     dia = request.json.get('dia')
-    hora_inicio = request.json.get('hora_inicio')
-    hora_fin = request.json.get('hora_fin')
+    horario_inicio = request.json.get('horario_inicio')
+    horario_fin = request.json.get('horario_fin')
 
     horario.id_taller = id_taller
     horario.dia = dia
-    horario.hora_inicio = hora_inicio
-    horario.hora_fin = hora_fin
+    horario.horario_inicio = horario_inicio
+    horario.horario_fin = horario_fin
 
     db.session.commit()
 
@@ -105,10 +105,10 @@ def delete_horario(id):
         }
         return make_response(jsonify(data), 404)
 
+    result = horario_schema.dump(horario)
+    
     db.session.delete(horario)
     db.session.commit()
-
-    result = horario_schema.dump(horario)
 
     data = {
         'message': 'Horario eliminado',

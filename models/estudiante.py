@@ -29,7 +29,7 @@ class Estudiante(db.Model):
     asistencias = relationship('Asistencia', backref='estudiante_asistencias', cascade='all, delete-orphan', overlaps="estudiante,asistencia")
 
     # constructor de la clase
-    def __init__(self, doc_identidad, nombres, apellidos, fec_nacimiento, id_genero, email, direccion, num_telefono, anio_ingreso, id_carrera):
+    def __init__(self, doc_identidad, nombres, apellidos, fec_nacimiento, id_genero, email, direccion, num_telefono, anio_ingreso, id_carrera,contrasenia):
         self.doc_identidad = doc_identidad
         self.nombres = nombres
         self.apellidos = apellidos
@@ -40,3 +40,4 @@ class Estudiante(db.Model):
         self.num_telefono = num_telefono
         self.anio_ingreso = anio_ingreso
         self.id_carrera = id_carrera
+        self.contrasenia=contrasenia

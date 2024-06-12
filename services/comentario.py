@@ -102,9 +102,9 @@ def update_comentario(id1, id2):
 
     return make_response(jsonify(data), 200)
 
-@comentario_routes.route('/delete_comentario/<int:id1>/<int:id2>', methods=['DELETE'])
-def delete_comentario(id1, id2):
-    comentario = Comentario.query.get(id1, id2)
+@comentario_routes.route('/delete_comentario/<int:id>', methods=['DELETE'])
+def delete_comentario(id):
+    comentario = Comentario.query.get(id)
 
     if not comentario:
         data = {
@@ -113,10 +113,12 @@ def delete_comentario(id1, id2):
         }
         return make_response(jsonify(data), 404)
 
+    result = comentario_schema.dump(comentario)
+
     db.session.delete(comentario)
     db.session.commit()
 
-    result = comentario_schema.dump(comentario)
+
 
     data = {
         'message': 'Comentario eliminado',

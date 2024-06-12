@@ -114,13 +114,15 @@ def delete_administrador(id):
             'status': 404
         }
         return make_response(jsonify(data), 404)
+    result=administrador_schema.dump(administrador)
 
     db.session.delete(administrador)
     db.session.commit()
 
     data = {
         'message': 'Administrador eliminado!',
-        'status': 200
+        'status': 200,
+        'data': result
     }
 
     return make_response(jsonify(data), 200)

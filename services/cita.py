@@ -104,7 +104,7 @@ def update_cita(id1, id2):
 
 @cita_routes.route('/delete_cita/<int:id1>/<int:id2>', methods=['DELETE'])
 def delete_cita(id1, id2):
-    cita = Cita.query.get(id1, id2)
+    cita = Cita.query.get((id1, id2))
 
     if not cita:
         data = {

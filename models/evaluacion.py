@@ -14,7 +14,7 @@ class Evaluacion(db.Model):
     estudiante = db.relationship('Estudiante', back_populates='evaluaciones')
     test = db.relationship('Test', back_populates='evaluaciones')
 
-    resultados = db.relationship('Resultado', backref='evaluacion1', cascade='all, delete-orphan')
+    resultados = relationship('Resultado', backref='evaluacion1', cascade='all, delete-orphan')
 
     # constructor de la clase
     def __init__(self, id_estudiante, id_test, respuestas, fec_realizacion):
